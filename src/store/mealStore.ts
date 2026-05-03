@@ -52,7 +52,7 @@ export const useMealStore = defineStore('meal', () => {
   // FAVORITES
   // -------------------------
   const addFavorite = (recipe: Recipe) => {
-    const exists = favorites.value.find(r => r.id === recipe.id)
+    const exists = favorites.value.find((r: Recipe) => r.id === recipe.id)
 
     if (!exists) {
       favorites.value.push(recipe)
@@ -61,7 +61,7 @@ export const useMealStore = defineStore('meal', () => {
   }
 
   const removeFavorite = (id: number) => {
-    favorites.value = favorites.value.filter(r => r.id !== id)
+    favorites.value = favorites.value.filter((r: Recipe) => r.id !== id)
     saveToLocal()
   }
 
