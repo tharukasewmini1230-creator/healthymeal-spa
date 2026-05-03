@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useMealStore } from "../store/mealStore"
-import type { Recipe } from "../types/recipe"
+import { useMealStore } from '../store/mealStore'
+import type { Recipe } from '../types/recipe'
 
 const props = defineProps<{ meal: Recipe | null }>()
 const emit = defineEmits(['close'])
