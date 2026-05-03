@@ -1,0 +1,67 @@
+<script setup lang="ts">
+import { useMealStore } from "../store/mealStore"
+
+const store = useMealStore()
+
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+</script>
+
+<template>
+  <div class="min-h-screen bg-gray-900 p-8 text-white">
+
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-black text-green-500">
+        My Weekly Meal Schedule
+      </h1>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div v-for="day in days" :key="day"
+        class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+
+        <h3 class="text-green-500 font-bold mb-4">
+          {{ day }}
+        </h3>
+
+        <!-- 🔥 FIX HERE (NO .value, NO computed) -->
+        <div v-if="store.weeklyPlan[day]" class="space-y-3">
+
+          <img
+            :src="store.weeklyPlan[day]?.image"
+            class="w-full h-40 object-cover rounded-xl"
+          />
+
+          <p class="font-bold">
+            {{ store.weeklyPlan[day]?.name }}
+          </p>
+
+          <button
+            @click="store.removeFromWeekly(day)"
+            class="w-full bg-red-500/20 text-red-300 py-2 rounded-xl"
+          >
+            Remove
+          </button>
+
+        </div>
+
+        <div v-else class="text-gray-500 text-sm">
+          No meal added
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
