@@ -13,7 +13,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, PropType } from 'vue'
+import { defineComponent, ref } from 'vue'
+import type { PropType } from 'vue'
 
 export default defineComponent({
   props: {
@@ -21,7 +22,7 @@ export default defineComponent({
     difficulties: { type: Array as PropType<string[]>, default: () => [] }
   },
   emits: ['update:filters'],
-  setup(props, { emit }) {
+  setup(_, { emit }) {
     const selectedCuisine = ref('')
     const selectedDifficulty = ref('')
 
